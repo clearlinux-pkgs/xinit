@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xCFDF148828C642A7 (alanc@freedesktop.org)
 #
 Name     : xinit
-Version  : 1.4.1
-Release  : 20
-URL      : https://xorg.freedesktop.org/releases/individual/app/xinit-1.4.1.tar.gz
-Source0  : https://xorg.freedesktop.org/releases/individual/app/xinit-1.4.1.tar.gz
-Source1  : https://xorg.freedesktop.org/releases/individual/app/xinit-1.4.1.tar.gz.sig
+Version  : 1.4.2
+Release  : 21
+URL      : https://www.x.org/releases/individual/app/xinit-1.4.2.tar.gz
+Source0  : https://www.x.org/releases/individual/app/xinit-1.4.2.tar.gz
+Source1  : https://www.x.org/releases/individual/app/xinit-1.4.2.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
@@ -61,8 +61,8 @@ man components for the xinit package.
 
 
 %prep
-%setup -q -n xinit-1.4.1
-cd %{_builddir}/xinit-1.4.1
+%setup -q -n xinit-1.4.2
+cd %{_builddir}/xinit-1.4.2
 %patch1 -p1
 
 %build
@@ -70,15 +70,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604598952
+export SOURCE_DATE_EPOCH=1670223816
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static --with-xterm=xfce4-terminal \
 --with-xinitdir=/usr/share/defaults/xinit
 make  %{?_smp_mflags}
@@ -91,10 +91,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1604598952
+export SOURCE_DATE_EPOCH=1670223816
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xinit
-cp %{_builddir}/xinit-1.4.1/COPYING %{buildroot}/usr/share/package-licenses/xinit/250db9d0bb70be7d9deaf3da89025047851703b9
+cp %{_builddir}/xinit-%{version}/COPYING %{buildroot}/usr/share/package-licenses/xinit/250db9d0bb70be7d9deaf3da89025047851703b9
 %make_install
 
 %files
